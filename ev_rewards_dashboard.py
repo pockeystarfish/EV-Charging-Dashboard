@@ -31,10 +31,11 @@ if effective_ev_cost < 0:
 
 # Base EV sales assumption without subsidies
 base_sales = 100000  
-# Sales increase factor: A €1,000 subsidy increases sales by 7.7%
-sales_increase_factor = gov_purchase_subsidy / 1000 * 7.7  
+# Sales increase factor: 1% reduction in EV price increases sales by 3.2% to 3.9%
+price_reduction_percentage = (gov_purchase_subsidy / ev_cost) * 100
+sales_increase_factor = price_reduction_percentage * np.random.uniform(3.2, 3.9) / 100  # Apply dynamic multiplier
 # New sales calculation incorporating the subsidy effect
-new_sales = base_sales * (1 + sales_increase_factor / 100)
+new_sales = base_sales * (1 + sales_increase_factor)
 
 # Profit per EV unit calculation
 ev_profit_per_unit = ev_cost * profit_margin
@@ -53,7 +54,7 @@ adjusted_electricity_cost = base_electricity_cost * (1 - electricity_subsidy)
 adjusted_ev_profit_per_unit = ev_profit_per_unit + (electricity_subsidy * effective_ev_cost * 0.1)  # Assume 10% of cost savings affect profit
 
 # Investor return calculation based on investment amount
-investment_return = num_evs_funded * adjusted_ev_profit_per_unit * (1 + sales_increase_factor / 100)
+investment_return = num_evs_funded * adjusted_ev_profit_per_unit * (1 + sales_increase_factor)
 roi_per_dollar = investment_return / investment_amount if investment_amount > 0 else 0
 
 # Creating a DataFrame to display results
@@ -78,7 +79,7 @@ st.pyplot(fig)
 
 # Key insights section
 st.write("### Key Insights:")
-st.write(f"- A purchase subsidy of €{gov_purchase_subsidy} leads to a {sales_increase_factor:.1f}% rise in EV sales.")
+st.write(f"- A purchase subsidy of €{gov_purchase_subsidy} leads to a price reduction of {price_reduction_percentage:.2f}%, increasing sales by approximately {sales_increase_factor*100:.2f}%.")
 st.write(f"- With these assumptions, EV manufacturers earn **€{total_profit:,.2f}** in total profit.")
 st.write(f"- The effective EV cost after subsidies is **€{effective_ev_cost:,.2f}**.")
 st.write(f"- An investment of **€{investment_amount:,.2f}** can fund **{num_evs_funded:.2f}** EVs.")
