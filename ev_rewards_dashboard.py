@@ -21,7 +21,7 @@ profit_margin = st.sidebar.slider("EV Manufacturer Profit Margin (%)", 2.0, 5.0,
 
 # Government purchase subsidy per EV (€)
 gov_purchase_subsidy = st.sidebar.slider("Government Purchase Subsidy per EV (€)", 0, 9000, 6000, 1000)
-# Electricity cost reduction due to subsidy (%)
+# Electricity cost reduction due to subsidy (%)/100
 electricity_subsidy = st.sidebar.slider("Electricity Cost Reduction (%)", 0, 30, 20) / 100
 
 # Adjusted EV cost after subsidy
@@ -37,7 +37,7 @@ sales_increase_factor = gov_purchase_subsidy / 1000 * 7.7
 new_sales = base_sales * (1 + sales_increase_factor / 100)
 
 # Profit per EV unit calculation
-ev_profit_per_unit = effective_ev_cost * profit_margin
+ev_profit_per_unit = ev_cost * profit_margin
 
 # Total profit for manufacturers
 total_profit = new_sales * ev_profit_per_unit
@@ -53,7 +53,7 @@ adjusted_electricity_cost = base_electricity_cost * (1 - electricity_subsidy)
 adjusted_ev_profit_per_unit = ev_profit_per_unit + (electricity_subsidy * effective_ev_cost * 0.1)  # Assume 10% of cost savings affect profit
 
 # Investor return calculation based on investment amount
-investment_return = num_evs_funded * adjusted_ev_profit_per_unit
+investment_return = num_evs_funded * adjusted_ev_profit_per_unit * (1 + sales_increase_factor / 100)
 roi_per_dollar = investment_return / investment_amount if investment_amount > 0 else 0
 
 # Creating a DataFrame to display results
@@ -83,5 +83,6 @@ st.write(f"- With these assumptions, EV manufacturers earn **€{total_profit:,.
 st.write(f"- The effective EV cost after subsidies is **€{effective_ev_cost:,.2f}**.")
 st.write(f"- An investment of **€{investment_amount:,.2f}** can fund **{num_evs_funded:.2f}** EVs.")
 st.write(f"- Adjusted electricity costs reduce operational expenses, increasing profits per EV.")
+st.write(f"- Increased sales due to subsidies directly enhance investor returns.")
 st.write(f"- This investment yields **€{investment_return:,.2f}** in return.")
 st.write(f"- Investors see a return of **€{roi_per_dollar:.4f} per €1 invested** in the EV sector.")
