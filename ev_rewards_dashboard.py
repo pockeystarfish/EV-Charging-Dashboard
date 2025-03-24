@@ -65,6 +65,27 @@ df = pd.DataFrame(data)
 # Display results in a table
 st.table(df)
 
+# Visualization - EV Sales Growth Due to Subsidies
+fig, ax = plt.subplots()
+categories = ["Without Subsidy", "With Subsidy"]
+values = [base_ev_sales, new_ev_sales]
+ax.bar(categories, values, color=[i_color1, i_color2])
+ax.set_ylabel("Number of EVs Sold")
+ax.set_title("Impact of Government Subsidies on EV Sales")
+st.pyplot(fig)
+
+# Visualization - Iberdrola Profitability & Charger Demand Growth
+fig2, ax2 = plt.subplots()
+ax2.plot(
+    [0, gov_purchase_subsidy], 
+    [iberdrola_profit / 1e6, charger_demand], 
+    marker='o', linestyle='-', color=i_color3
+)
+ax2.set_xlabel("Government Purchase Subsidy (€)")
+ax2.set_ylabel("Iberdrola Profit (€M) / Charger Demand")
+ax2.set_title("Iberdrola Profitability & Charger Demand Growth Due to Subsidies")
+st.pyplot(fig2)
+
 # Rationale Behind Government Subsidies
 st.write("### Rationale Behind Government Subsidies")
 st.write("Government subsidies for EV purchases and electricity cost reductions are based on policies seen in France and Germany, where strong incentives have significantly increased EV adoption rates.")
