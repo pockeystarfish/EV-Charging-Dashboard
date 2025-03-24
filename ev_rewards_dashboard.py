@@ -65,4 +65,29 @@ df = pd.DataFrame(data)
 # Display results in a table
 st.table(df)
 
-# Updated to Reflect Electricity Subsidy Impact on EV Sales
+# Assumptions Used in the Model
+st.write("### Assumptions Used in the Model")
+st.write("- **Base EV sales in Spain**: 500,000 units projected for 2025.")
+st.write("- **EV price**: €40,000 on average, based on European market trends.")
+st.write("- **EV sales increase per €1,000 subsidy**: 7.7% growth rate (TSE, 2023).")
+st.write("- **Electricity subsidy impact on EV sales**: Every 10% reduction in electricity cost leads to a 3.2% increase in EV sales.")
+st.write("- **Charging station demand ratio**: 1 public charger is required for every 10 EVs on the road.")
+st.write("- **Iberdrola's market share in charging infrastructure**: 20%.")
+st.write("- **Annual revenue per charger**: €4,000.")
+st.write("- **Profit margin on charging infrastructure**: 30%.")
+st.write("- **Industry-wide ROI multiplier**: €1.50 return per €1.00 public investment.")
+
+# Calculation Methodology
+st.write("### Calculation Methodology")
+st.write("All calculations are based on data extracted from **calc.pdf**, where we analyzed historical trends and government reports.")
+st.write("- **Sales increase estimates** are derived from empirical studies on the effect of subsidies on EV adoption (TSE, 2023).")
+st.write("- **Charging demand estimates** follow industry standards on charger-to-EV ratios (EAFO, 2024).")
+st.write("- **Iberdrola's revenue and profitability** are based on actual market shares and revenue per charger statistics (Statista, 2023).")
+st.write("- **ROI calculations** utilize a public investment multiplier from European industry benchmarks (ACEA, 2024).")
+
+# Sources Section
+st.write("### Sources (MLA Format)")
+st.write("- ACEA. 'Electric Cars: Tax Benefits and Incentives (2024).' ACEA, 2024. [Link](https://www.acea.auto/fact/electric-cars-tax-benefits-and-incentives-2024/)")
+st.write("- EAFO. 'Spain: BEV Passenger Car Sales Increased by 7.8% in 2024.' European Alternative Fuels Observatory, 2024. [Link](https://alternative-fuels-observatory.ec.europa.eu/general-information/news/spain-bev-passenger-car-sales-increased-78-2024)")
+st.write("- TSE. 'Electric Vehicle Subsidies: Cost-Effectiveness and Emission Impacts.' Toulouse School of Economics, 2023. [Link](https://www.tse-fr.eu/sites/default/files/TSE/documents/doc/wp/2023/wp_tse_1465.pdf)")
+st.write("- NBER. 'Shifting Electric Vehicle Owners to Off-Peak Charging.' National Bureau of Economic Research, 2024. [Link](https://www.nber.org/digest/202401/shifting-electric-vehicle-owners-peak-charging)")
