@@ -65,6 +65,13 @@ df = pd.DataFrame(data)
 # Display results in a table
 st.table(df)
 
+# Rationale Behind Government Subsidies
+st.write("### Rationale Behind Government Subsidies")
+st.write("Government subsidies for EV purchases and electricity cost reductions are based on policies seen in France and Germany, where strong incentives have significantly increased EV adoption rates.")
+st.write("- **France**: Offers purchase grants of up to €7,000 per EV and reduced electricity taxes to encourage adoption.")
+st.write("- **Germany**: Implements a bonus-malus system, providing up to €9,000 in purchase grants and tax exemptions for EV owners.")
+st.write("- **Spain's Subsidy Strategy**: Based on comparative studies, Spain's proposed subsidy structure of up to €9,000 aligns with successful policies in neighboring countries to boost EV adoption and infrastructure investments.")
+
 # Assumptions Used in the Model
 st.write("### Assumptions Used in the Model")
 st.write("- **Base EV sales in Spain**: 500,000 units projected for 2025.")
