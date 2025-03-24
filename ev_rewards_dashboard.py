@@ -8,12 +8,18 @@ i_color1 = "#00A650"  # Green
 i_color2 = "#0070C0"  # Blue
 i_color3 = "#FFB81C"  # Yellow
 
-# Load Iberdrola logo
-st.image("download (1).jpg", width=150)
-
 # Dashboard Title
 st.title("EV Investment & Infrastructure Dashboard - Spain")
 st.write("Analyze the impact of government subsidies and electricity discounts on EV sales, charger demand, and Iberdrola's profitability.")
+
+# Sidebar Styling
+st.markdown("""
+    <style>
+        .sidebar .sidebar-content {
+            background-color: #00A650;
+        }
+    </style>
+    """, unsafe_allow_html=True)
 
 # Sidebar Inputs
 st.sidebar.header("Investment & Subsidy Options")
