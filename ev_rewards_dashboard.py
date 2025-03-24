@@ -64,6 +64,20 @@ df = pd.DataFrame(data)
 # Display results in a table
 st.table(df)
 
+# Rationale Behind Government Subsidies
+st.write("### Rationale Behind Government Subsidies")
+st.write("Government subsidies for EV purchases and electricity cost reductions are based on policies seen in France and Germany, where strong incentives have significantly increased EV adoption rates.")
+st.write("- **France**: Offers purchase grants of up to €7,000 per EV and reduced electricity taxes to encourage adoption.")
+st.write("- **Germany**: Implements a bonus-malus system, providing up to €9,000 in purchase grants and tax exemptions for EV owners.")
+st.write("- **Spain's Subsidy Strategy**: Based on comparative studies, Spain's proposed subsidy structure of up to €9,000 aligns with successful policies in neighboring countries to boost EV adoption and infrastructure investments.")
+
+# Details on EV Purchase Subsidy Mechanism
+st.write("### How the EV Purchase Subsidy Works")
+st.write("The EV purchase subsidy directly lowers the upfront cost of EVs, increasing affordability and adoption rates. The key effects include:")
+st.write("- **Lowering purchase price**: A €6,000 subsidy effectively reduces the cost of an EV from €40,000 to €34,000, making it more attractive to buyers.")
+st.write("- **Boosting demand**: Every €1,000 in subsidies is estimated to increase EV sales by approximately 7.7% (TSE, 2023).")
+st.write("- **Accelerating infrastructure growth**: More EVs lead to increased demand for charging infrastructure, benefiting operators like Iberdrola.")
+
 # Visualization - EV Sales Growth
 fig, ax = plt.subplots()
 categories = ["Without Subsidy", "With Subsidy"]
@@ -88,14 +102,3 @@ st.write("- **EV purchase price**: €40,000 on average (TSE, 2023).")
 st.write("- **Sales increase per €1,000 subsidy**: 7.7% (TSE, 2023).")
 st.write("- **Charger demand ratio**: 1 charger per 10 EVs (WFW, 2024).")
 st.write("- **Iberdrola’s market share**: 20% (Statista, 2023).")
-st.write("- **Revenue per charger**: €4,000 annually (Enel X, 2023).")
-st.write("- **Profit margin on charging**: 30% (Roland Berger, 2024).")
-st.write("- **Electricity discount impact**: Every 10% off-peak discount increases profit potential by ~10% (NBER, 2024).")
-st.write("- **Industry ROI multiplier**: €1.50 return per €1.00 public investment (ACEA, 2024).")
-
-# Sources Section
-st.write("### Sources (MLA Format)")
-st.write("- ACEA. 'Electric Cars: Tax Benefits and Incentives (2024).' ACEA, 2024. [Link](https://www.acea.auto/fact/electric-cars-tax-benefits-and-incentives-2024/)")
-st.write("- EAFO. 'Spain: BEV Passenger Car Sales Increased by 7.8% in 2024.' European Alternative Fuels Observatory, 2024. [Link](https://alternative-fuels-observatory.ec.europa.eu/general-information/news/spain-bev-passenger-car-sales-increased-78-2024)")
-st.write("- TSE. 'Electric Vehicle Subsidies: Cost-Effectiveness and Emission Impacts.' Toulouse School of Economics, 2023. [Link](https://www.tse-fr.eu/sites/default/files/TSE/documents/doc/wp/2023/wp_tse_1465.pdf)")
-st.write("- NBER. 'Shifting Electric Vehicle Owners to Off-Peak Charging.' National Bureau of Economic Research, 2024. [Link](https://www.nber.org/digest/202401/shifting-electric-vehicle-owners-peak-charging)")
