@@ -1,3 +1,11 @@
+# Assumed baseline values from Q1 2025 report
+baseline_revenue = 12864.7  # in €M
+baseline_ebitda = 4643.0    # in €M
+baseline_profit = 2004.4    # in €M
+baseline_assets = 162187    # in €M
+baseline_equity = 60694     # in €M
+baseline_liabilities = baseline_assets - baseline_equity
+
 # User input for number of chargers to simulate financial impact
 user_chargers = st.number_input("Enter the number of EV chargers Iberdrola plans to deploy:", min_value=0, value=1000, step=100)
 
@@ -14,33 +22,43 @@ user_ebitda = user_profit * 0.8  # assuming 80% EBITDA contribution
 user_adj_revenue = baseline_revenue + user_revenue / 1e6
 user_adj_ebitda = baseline_ebitda + user_ebitda / 1e6
 user_adj_profit = baseline_profit + user_profit / 1e6
+user_adj_assets = baseline_assets + (user_chargers * 35)  # assume €35k per charger in €M
+user_adj_equity = baseline_equity + user_profit / 1e6
+user_adj_liabilities = user_adj_assets - user_adj_equity
 
 # Display simulated financial statement
 st.write("### Simulated Financials Based on User-Defined Charger Deployment")
-st.write(f"**Baseline Revenue:** €{baseline_revenue:.2f}M")
-st.write(f"**Adjusted Revenue:** €{user_adj_revenue:.2f}M")
-st.write(f"**Baseline EBITDA:** €{baseline_ebitda:.2f}M")
-st.write(f"**Adjusted EBITDA:** €{user_adj_ebitda:.2f}M")
-st.write(f"**Baseline Profit:** €{baseline_profit:.2f}M")
-st.write(f"**Adjusted Net Profit:** €{user_adj_profit:.2f}M")
+col1, col2 = st.columns(2)
+with col1:
+    st.subheader("Profit & Loss Statement (€M)")
+    st.write("**Revenue:**")
+    st.write(f"- Baseline: €{baseline_revenue:.2f}M")
+    st.write(f"- Adjusted: €{user_adj_revenue:.2f}M")
+    st.write("**EBITDA:**")
+    st.write(f"- Baseline: €{baseline_ebitda:.2f}M")
+    st.write(f"- Adjusted: €{user_adj_ebitda:.2f}M")
+    st.write("**Net Profit:**")
+    st.write(f"- Baseline: €{baseline_profit:.2f}M")
+    st.write(f"- Adjusted: €{user_adj_profit:.2f}M")
 
-# Visualization - Iberdrola Financial Impact of Charger Deployment
-# Assumed baseline values from Q1 2025 report
-baseline_revenue = 12864.7  # in €M
-baseline_ebitda = 4643.0    # in €M
-baseline_profit = 2004.4    # in €M
-
-# Updated values after adding charger business (additive based on calculated profit)
-adjusted_revenue = baseline_revenue + iberdrola_revenue / 1e6
-adjusted_ebitda = baseline_ebitda + (iberdrola_profit * 0.8) / 1e6  # assuming 80% of profit contributes to EBITDA
-adjusted_profit = baseline_profit + iberdrola_profit / 1e6
+with col2:
+    st.subheader("Balance Sheet (€M)")
+    st.write("**Assets:**")
+    st.write(f"- Baseline: €{baseline_assets:.0f}M")
+    st.write(f"- Adjusted: €{user_adj_assets:.0f}M")
+    st.write("**Equity:**")
+    st.write(f"- Baseline: €{baseline_equity:.0f}M")
+    st.write(f"- Adjusted: €{user_adj_equity:.0f}M")
+    st.write("**Liabilities:**")
+    st.write(f"- Baseline: €{baseline_liabilities:.0f}M")
+    st.write(f"- Adjusted: €{user_adj_liabilities:.0f}M")
 
 # Visualization - Revenue, EBITDA, Profit Comparison
 fig, ax = plt.subplots()
 labels = ["Baseline", "With EV Charging"]
-revenue = [baseline_revenue, adjusted_revenue]
-ebitda = [baseline_ebitda, adjusted_ebitda]
-profit = [baseline_profit, adjusted_profit]
+revenue = [baseline_revenue, user_adj_revenue]
+ebitda = [baseline_ebitda, user_adj_ebitda]
+profit = [baseline_profit, user_adj_profit]
 x = np.arange(len(labels))
 width = 0.25
 
@@ -49,7 +67,7 @@ ax.bar(x, ebitda, width, label='EBITDA (€M)', color=i_color2)
 ax.bar(x + width, profit, width, label='Net Profit (€M)', color=i_color3)
 
 ax.set_ylabel("€ Millions")
-ax.set_title("Iberdrola Financial Metrics Before vs After EV Infrastructure Investment")
+ax.set_title("Iberdrola Financial Metrics Before vs After EV Charger Deployment")
 ax.set_xticks(x)
 ax.set_xticklabels(labels)
 ax.legend()
