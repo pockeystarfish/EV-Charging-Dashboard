@@ -18,9 +18,9 @@ baseline_liabilities = baseline_assets - baseline_equity
 
 # User input for number of chargers to simulate financial impact
 user_chargers = st.number_input(
-    "Enter the number of EV chargers Iberdrola plans to deploy:", 
-    min_value=0, 
-    value=1000, 
+    "Enter the number of EV chargers Iberdrola plans to deploy:",
+    min_value=0,
+    value=1000,
     step=100
 )
 
@@ -88,6 +88,26 @@ ax.set_xticks(x)
 ax.set_xticklabels(labels)
 ax.legend()
 st.pyplot(fig)
+
+# Add explanation section
+st.write("### How Does Charger Deployment Affect Financials?")
+st.write("The following assumptions and calculations explain how each additional charger affects Iberdrola’s revenue and profitability:")
+st.markdown("""
+- 📌 **Revenue Per Charger**: Each EV charger is assumed to generate €4,000 in annual revenue based on industry benchmarks (EVBox, Enel X).
+- 📌 **Profit Margin**: 30% of revenue is assumed to be profit.
+- 📌 **EBITDA Contribution**: 80% of the profit is considered as contributing to EBITDA.
+- 📌 **Charger CapEx**: Each charger adds €35,000 to the company’s asset base.
+- 📌 **Equity Increase**: Adjusted equity is calculated by adding net profit from chargers to baseline equity.
+- 📌 **Liabilities**: Computed as Adjusted Assets - Adjusted Equity.
+
+🧮 **Example Calculation for 1 Charger**:
+- Revenue: €4,000
+- Profit: €1,200 (30% of revenue)
+- EBITDA: €960 (80% of profit)
+- Asset increase: €0.035M
+
+These changes are then added to Iberdrola’s baseline financials to project updated performance.
+""")
 
 # Add updated source references
 st.write("### Sources (MLA Format)")
